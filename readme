@@ -1,0 +1,15 @@
+usage ./gomakefiles <startcursor> <endcursor>
+
+will make a clean directory based on the time stamp and start writing files into it starting with nonce0 ... ending in nonce<endcursor> Each file will contain  an unisgned long long's worth of sentinal indicating which file it should belong to; this should make the file content to file handle mapping trivial to postcompute and prove. 
+
+This tool should build on freebsd 10.3 amd64 abi familiy and run on TrueNAS 9.10.    
+
+We generate files at rates in excess of 10K/sec on Z20 Truenas hardware. By specifing parallel invocations with non overlapping cursor addresses;  higher rates are likely. 
+
+example:
+./gomakefiles 0 0x1000
+<wait...>
+#hd noncedir582F781E/nonceFF  
+00000000  ff 00 00 00 00 00 00 00                           |........| 
+00000008
+
