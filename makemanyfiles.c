@@ -15,6 +15,11 @@ int file_handle;
 char *filename;
 char *dirname;
 mode_t dir_mode = S_IWRITE|S_IREAD|S_IEXEC;
+
+if ( argc < 2 ) { 
+	printf ("usage: gomakefiles <startnum> <endnum>\n"); 
+	exit (EDOOFUS);
+}
 filename  = calloc ( sizeof(char), 1024); 
 
 start_num = strtoll ( argv[1],NULL,0 ) ;
